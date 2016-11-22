@@ -2,6 +2,7 @@
 
 byte joy[8] = { A0, A1, A2, A3, A4, A5, A6, A7 }; // RU(01) FM(23) LD(45) XY(67) 에 사용될 아날로그핀 8개
 
+unsigned long previousTime = 0,currentTime; // 시간을 측정할 변수를 선언한다. 이전시간은 0으로 초기화한다.
 void joyInput(int R,int U, int L, int D, int F, int M, int X, int Y) // 조이스틱 입력을 전달받아 처리하는 함수이다.
 {
   byte select = -1; // 0 ~ 13 R/U/F/L/D/B/M 14~17 X/Y // 최초는 -1로 초기화하여 아무 동작도 하지 않는다.
@@ -39,7 +40,7 @@ void setup() {
 }
 
 void loop() {
-  currentTime = millis(); // 프로그램이 시작 된 시간을 측정한다.
+  currentTime = millis(); // 프로그램이 시작 된 이후부터 시간을 측정한다.
 
   int R = analogRead(joy[0]);
   int U = analogRead(joy[1]);
